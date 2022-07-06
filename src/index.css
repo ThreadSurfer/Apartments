@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.building {
+  height: 100%;
+  width: 40em;
+  display: grid;
+  position: fixed;
+  display: grid;
+  column-gap: 50px;
+  grid-template-columns: auto auto;
+
+  background-color: gray;
+  border: 1px solid black;
+  left: 30%;
+  right: 50%;
+}
+
+.apartment {
+  height: 100px;
+  width: 200px;
+  background-color: white;
+  border: 1px solid red;
+  display: inline-grid;
+  margin: auto;
+}
+
+.apartment:hover {
+  background-color: cyan;
+}

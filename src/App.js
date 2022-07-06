@@ -1,25 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react'
+import { render } from '@testing-library/react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  handleClick() {
+    console.log("element clicked");
+}
+  render() {
+    return (
+      <div className="App">
+        <div className="building">
+          <div className='apartment' onClick={() => console.log(1)} id='1'></div>
+          <div className='apartment' onClick={() => console.log(2)} id='2'></div>
+          <div className='apartment' onClick={() => console.log(3)} id='3'></div>
+          <div className='apartment' onClick={() => console.log(4)} id='4'></div>
+          <div className='apartment' onClick={() => console.log(5)} id='5'></div>
+          <div className='apartment' onClick={() => console.log(6)} id='6'></div>
+        </div>
+      </div>
+    );
+  }
+
 }
 
 export default App;
