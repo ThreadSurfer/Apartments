@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Apartment = require('../models/apartmentModel')
+const sendEmail = require('../sendEmail')
 
 router.get('/', async (req, res) => {
     try {
@@ -34,6 +35,16 @@ router.delete('/', async(req, res) => {
     } catch(err) {
         res.status(500).json({ message: err.message })
     }
+})
+
+router.post('/sendMail/:to/:subject/:message', async (req, res) => {
+    try {
+        await sendEmail(req.params.to, req.params.subject, req.params.message)
+        res.status(200).json({ message: req.params.message })
+    } catch(err) {
+        res.status(400).json({ message: err.message })
+    }
+
 })
 
 module.exports = router
