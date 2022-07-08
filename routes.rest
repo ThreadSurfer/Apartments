@@ -6,6 +6,14 @@ POST http://localhost:3000/apartments
 Content-Type: application/json
 
 {
-    "number": 4,
-    "cost": 200000,
+    "number": 2,
+    "cost": 200000
 }
+
+###
+
+DELETE http://localhost:3000/apartments
+
+###
+
+POST http://localhost:3000/apartments/sendMail
