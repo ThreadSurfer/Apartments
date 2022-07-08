@@ -16,4 +16,4 @@ DELETE http://localhost:3000/apartments
 
 ###
 
-POST http://localhost:3000/apartments/sendMail
+POST http://localhost:3000/apartments/sendMail/giladij@outlook.com/yo/yoyo

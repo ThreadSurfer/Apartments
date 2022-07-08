@@ -39,3 +39,11 @@ code {
 .apartment:hover {
   background-color: cyan;
 }
+
+.apartmentForm {
+  border: 1px solid red;
+  position: relative;
+  text-align: left;
+  display: inline-block;
+  float: left;
+}
