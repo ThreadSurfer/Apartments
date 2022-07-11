@@ -2,6 +2,14 @@ GET http://localhost:3000/apartments
 
 ###
 
+GET http://localhost:3000/apartments/62c7d2db3d728be1a773ccb5
+
+### Get first match by number 
+
+GET http://localhost:3000/apartments/num/2
+
+### 
+
 POST http://localhost:3000/apartments
 Content-Type: application/json
 

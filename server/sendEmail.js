@@ -5,15 +5,15 @@ const nodemailer = require('nodemailer');
 
 let transporter = nodemailer.createTransport({
 
-             host: 'smtp-mail.outlook.com',
+             host: 'smtp-relay.sendinblue.com',
 
              port: 587,
 
              auth: {
 
-                 user: "giladij@hotmail.com",
+                 user: "wulu1919@gmail.com",
 
-                 pass: "pouidyaufdlgtgkd"
+                 pass: "kBDImfN4FPHRzJ8S"
 
              }
 
@@ -21,7 +21,7 @@ let transporter = nodemailer.createTransport({
 
     let message = {
         
-                 from: "giladij@hotmail.com",
+                 from: "wulu1919@gmail.com",
         
                  to: to,
         

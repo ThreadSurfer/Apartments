@@ -13,6 +13,10 @@ const apartmentSchema = mongoose.Schema({
     purchaseDate: {
         type: Date,
         required: false
+    },
+    purchaser: {
+        type: String,
+        required: false
     }
 
 })
