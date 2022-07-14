@@ -13,7 +13,8 @@ class App extends Component {
       cost: null,
       purchaser: null,
       color: ["white", "white", "white", "white", "white", "white"],
-      serverResponse: null
+      serverResponse: null,
+      url: "http://localhost:3000/apartments/"
     }
     this.displayMenu = this.displayMenu.bind(this)
   }
@@ -28,6 +29,7 @@ class App extends Component {
           let colors = this.state.color
           colors[id -1] = "yellow"
           this.setState({color: colors})
+          this.setState({url: "http://localhost:3000/apartments/" + id})
         }
        
       })
@@ -50,14 +52,14 @@ class App extends Component {
   if(apartmentFetch.ok) {
     await apartmentFetch.json()
     .then(res => {
-      this.setState({cost: res[0].cost, purchaser: res[0].purchaser, info_menu_visible: "visible"})
+      this.setState({cost: res[0].cost, purchaser: res[0].purchaser, info_menu_visible: "visible", serverResponse: "ok"})
       this.state.color[id -1] = "yellow"
     })
 
   }
 
   else {
-    this.setState({ cost: null, purchaser: null})
+    this.setState({ cost: null, purchaser: null, serverResponse: null})
   }
   
   if(this.state.info_menu_visible == 'hidden'){
@@ -92,7 +94,7 @@ class App extends Component {
           <div className='apartment' style = {{ backgroundColor: this.state.color[5] }}  onClick={() => this.displayMenu(6)} id='6'></div>
         </div>
        <InfoMenu visibility={this.state.info_menu_visible} date = {this.state.date} selectedApartment = {this.state.selectedApartment} id = {this.state.selectedApartment}
-       purchaser = {this.state.purchaser} cost ={this.state.cost} changeProps = {this.changeProps}
+       purchaser = {this.state.purchaser} cost ={this.state.cost} changeProps = {this.changeProps} serverResponse = {this.state.serverResponse}
        />
 
        <div id='test'>  

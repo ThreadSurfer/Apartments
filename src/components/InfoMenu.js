@@ -54,11 +54,11 @@ export default function InfoMenu(props) {
             <br></br>
             <br></br>
 
-            <label htmlFor="date">Confirm choice: </label>
-            <button type="button" onClick={async () => {
+            <label id = "confirmLabel" htmlFor="date">{props.serverResponse == "ok" ? "Cancel Choice" : "Confirm Choice"} </label>
+            <button id = "confirmButton" type="button" onClick={async () => {
                 await postData(url)
                 props.changeProps(props.id, 'yellow', document.getElementById('purchaser').value, document.getElementById('cost').value )
-                }}>Reserve</button>
+                }}>{props.serverResponse == "ok" ? "Cancel" : "purchase"}</button>
         </form>
 
         
