@@ -56,6 +56,22 @@ router.post('/', async(req, res) => {
     }
 })
 
+//delete one
+
+router.delete('/:number', async(req, res) => {
+    try {
+        await Apartment.deleteMany({ number: req.params.number })
+        res.json({ message: "Apartment " + res.params.number +" deleted." })
+    } catch(err) {
+        console.log('test')
+        res.status(500).json({ message: err.message })
+    }
+    
+
+})
+
+// Delete all. Used for testing purposes.
+
 router.delete('/', async(req, res) => {
     try {
         await Apartment.deleteMany()

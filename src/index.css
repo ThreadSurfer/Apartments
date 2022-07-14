@@ -50,6 +50,7 @@ code {
   background-color: cyan;
   border-radius: 10px;
   visibility: hidden;
+  padding-bottom: 2em;
 
   -webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 2s; /* Firefox < 16 */
@@ -100,3 +101,6 @@ to   { opacity: 1; }
   text-align: left;
 }
 
+input {
+  float: right;
+}

@@ -14,13 +14,17 @@ POST http://localhost:3000/apartments
 Content-Type: application/json
 
 {
-    "number": 2,
+    "number": 3,
     "cost": 200000
 }
 
 ###
 
-DELETE http://localhost:3000/apartments
+DELETE http://localhost:3000/apartments/2
+
+###
+
+DELETE http://localhost:3000/apartments/62cbc109fcbee617a1633191
 
 ###
 
