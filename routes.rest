@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/apartments/2
+DELETE http://localhost:3000/apartments/
 
 ###
 

@@ -33,6 +33,33 @@ export default function InfoMenu(props) {
         .then( response => console.log(response))
     }
 
+    const deleteData = async (url) => {
+
+
+        // data that will be passed to request  
+
+        const body = {
+            number: props.id,
+            cost: document.getElementById('cost').value,
+            purchaser: document.getElementById('purchaser').value,
+            purchaseDate: new Date()
+        }
+
+        console.log(url)
+        //post request starts here
+        await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+            
+        })
+        .then(response => response.json())
+        .then( response => console.log(response))
+    }
+
   return (
     <div>
         <form className='apartmentForm' style = {{visibility: props.visibility}}>

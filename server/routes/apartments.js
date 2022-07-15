@@ -27,7 +27,7 @@ router.get('/:id', getApartment, async (req, res) => {
 // get one appartment by unit number (1 - 6)
 router.get('/num/:num', async(req, res) => {
     try {
-        let apartment = await Apartment.find({ number: req.params.num })
+        let apartment = await Apartment.find({ "number": req.params.num })
         if(apartment.length == 0)
             return res.status(404).json( { message: "Apartment not yet registered " })
         else res.status(200).json(apartment)
@@ -59,11 +59,11 @@ router.post('/', async(req, res) => {
 //delete one
 
 router.delete('/:number', async(req, res) => {
+
     try {
-        await Apartment.deleteMany({ number: req.params.number })
-        res.json({ message: "Apartment " + res.params.number +" deleted." })
+        await Apartment.deleteMany({ "number": 3 })
+        res.json({ message: "Apartment " + req.params.number +" deleted." })
     } catch(err) {
-        console.log('test')
         res.status(500).json({ message: err.message })
     }
     
