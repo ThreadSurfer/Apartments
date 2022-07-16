@@ -61,7 +61,7 @@ router.post('/', async(req, res) => {
 router.delete('/:number', async(req, res) => {
 
     try {
-        await Apartment.deleteMany({ "number": 3 })
+        await Apartment.deleteMany({ number: req.params.number })
         res.json({ message: "Apartment " + req.params.number +" deleted." })
     } catch(err) {
         res.status(500).json({ message: err.message })
