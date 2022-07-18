@@ -13,8 +13,8 @@ export default function InfoMenu(props) {
 
         const body = {
             number: props.id,
-            cost: document.getElementById('cost').value,
-            purchaser: document.getElementById('purchaser').value,
+            cost: document.getElementById('cost').value == null? null : document.getElementById('cost').value,
+            purchaser: document.getElementById('purchaser').value == null ? null : document.getElementById('purchaser').value,
             purchaseDate: new Date()
         }
 
@@ -29,35 +29,30 @@ export default function InfoMenu(props) {
             body: JSON.stringify(body)
             
         })
+        .then( response => {
+            if(response.ok) 
+                props.changeProps(props.id, 'yellow', document.getElementById('purchaser').value, document.getElementById('cost').value, "ok" )
+            return response})
         .then(response => response.json())
         .then( response => console.log(response))
+
     }
 
     const deleteData = async (url) => {
-
-
-        // data that will be passed to request  
-
-        const body = {
-            number: props.id,
-            cost: document.getElementById('cost').value,
-            purchaser: document.getElementById('purchaser').value,
-            purchaseDate: new Date()
-        }
-
-        console.log(url)
-        //post request starts here
-        await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
+        try {
+            await fetch(url, {
+                method: 'DELETE',
+                mode: 'cors'
+            })
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .then(props.changeProps(props.id, 'white', "", ""))
+            document.getElementById('purchaser').value = ""
+            document.getElementById('cost').value = ""
             
-        })
-        .then(response => response.json())
-        .then( response => console.log(response))
+        } catch(err) {
+
+        }
     }
 
   return (
@@ -75,16 +70,13 @@ export default function InfoMenu(props) {
             <input id="cost" name="cost" ></input>
             <br></br>
             <br></br>
-            <label htmlFor="date">Date: </label>
-            <input disabled value={props.date}></input>
 
             <br></br>
             <br></br>
 
             <label id = "confirmLabel" htmlFor="date">{props.serverResponse == "ok" ? "Cancel Choice" : "Confirm Choice"} </label>
             <button id = "confirmButton" type="button" onClick={async () => {
-                await postData(url)
-                props.changeProps(props.id, 'yellow', document.getElementById('purchaser').value, document.getElementById('cost').value )
+                props.serverResponse == "ok" ? await deleteData('http://localhost:3000/apartments/'+props.id) : await postData('http://localhost:3000/apartments')
                 }}>{props.serverResponse == "ok" ? "Cancel" : "purchase"}</button>
         </form>
 

@@ -16,18 +16,18 @@ router.get('/', async (req, res) => {
 })
 
 //get one appartment by id
-router.get('/:id', getApartment, async (req, res) => {
+router.get('/:id', getApartment, (req, res) => {
     try {
         res.json(res.apartment)
     } catch(err) {
-        res.status(500).json({ message: err.message })
+        // res.status(500).json({ message: err.message })
     }
 })
 
 // get one appartment by unit number (1 - 6)
-router.get('/num/:num', async(req, res) => {
+router.get('/:num', getApartment, async(req, res) => {
     try {
-        let apartment = await Apartment.find({ "number": req.params.num })
+
         if(apartment.length == 0)
             return res.status(404).json( { message: "Apartment not yet registered " })
         else res.status(200).json(apartment)
@@ -99,9 +99,9 @@ async function getApartment(req, res, next) {
 
     let apartment
     try {
-         apartment = await Apartment.findById(req.params.id)
-        if(apartment == null)
-            res.json({ message: "Apartment not found"})
+         apartment = await Apartment.findOne({number: req.params.id})
+        if(apartment == null || apartment.length == 0)
+            res.status(404).json({ message: "Apartment not found"})
     } catch(err) {
         res.status(500).json({ message: err.message })
     }

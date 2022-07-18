@@ -6,7 +6,7 @@ GET http://localhost:3000/apartments/62c7d2db3d728be1a773ccb5
 
 ### Get first match by number 
 
-GET http://localhost:3000/apartments/num/2
+GET http://localhost:3000/apartments/1
 
 ### 
 
@@ -14,17 +14,17 @@ POST http://localhost:3000/apartments
 Content-Type: application/json
 
 {
-    "number": 3,
+    "number": 2,
     "cost": 200000
 }
 
 ###
 
-DELETE http://localhost:3000/apartments/
+DELETE http://localhost:3000/apartments/2
 
 ###
 
-DELETE http://localhost:3000/apartments/62cbc109fcbee617a1633191
+DELETE http://localhost:3000/apartments/
 
 ###
 

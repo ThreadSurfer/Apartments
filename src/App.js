@@ -22,10 +22,10 @@ class App extends Component {
   async componentDidMount() {
       
     for (let id = 1; id < 6; id++) {
-      await fetch('http://localhost:3000/apartments/num/' + id)
+      await fetch('http://localhost:3000/apartments/' + id)
       .then(async (res) => {
         if(res.ok) {
-          console.log('test' + id)
+          console.log(res.status)
           let colors = this.state.color
           colors[id -1] = "yellow"
           this.setState({color: colors})
@@ -36,15 +36,15 @@ class App extends Component {
     }
   }
 
-  changeProps = (id, color, purchaser, cost) => {
+  changeProps = (id, color, purchaser, cost, serverResponse) => {
     const colorSlate = this.state.color
     colorSlate[id-1] = color
-    this.setState({color: colorSlate, purchaser: purchaser, cost: cost})
+    this.setState({color: colorSlate, purchaser: purchaser, cost: cost, serverResponse: serverResponse})
   }
 
 
  displayMenu = async (id) => {
-  let apartmentFetch = await fetch('http://localhost:3000/apartments/num/' + id)
+  let apartmentFetch = await fetch('http://localhost:3000/apartments/' + id)
 
 
 
@@ -52,7 +52,7 @@ class App extends Component {
   if(apartmentFetch.ok) {
     await apartmentFetch.json()
     .then(res => {
-      this.setState({cost: res[0].cost, purchaser: res[0].purchaser, info_menu_visible: "visible", serverResponse: "ok"})
+      this.setState({cost: res.cost, purchaser: res.purchaser, info_menu_visible: "visible", serverResponse: "ok"})
       this.state.color[id -1] = "yellow"
     })
 
@@ -100,6 +100,7 @@ class App extends Component {
        <div id='test'>  
        <p>Purchaser: {this.state.purchaser}</p>
        <p>Cost: {this.state.cost}</p>
+       <p>Date: {this.state.date}</p>
        </div>
     
       </div>
