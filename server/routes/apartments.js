@@ -83,9 +83,9 @@ router.delete('/', async(req, res) => {
 
 //email post for potential future email use
 
-router.post('/sendMail/:to/:subject/:message', async (req, res) => {
+router.post('/sendMail/:to/:id/', async (req, res) => {
     try {
-        await sendEmail(req.params.to, req.params.subject, req.params.message)
+        await sendEmail(req.params.to, req.params.id, req.body.message)
         res.status(200).json({ message: req.params.message })
     } catch(err) {
         res.status(400).json({ message: err.message })

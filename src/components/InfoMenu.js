@@ -17,6 +17,9 @@ export default function InfoMenu(props) {
             purchaser: document.getElementById('purchaser').value == null ? null : document.getElementById('purchaser').value,
             purchaseDate: new Date()
         }
+        const message = {
+            message: 'Apartment unit #' + props.id + ' has been purchased by ' + document.getElementById('purchaser').value
+        }
 
         console.log(url)
         //post request starts here
@@ -35,6 +38,16 @@ export default function InfoMenu(props) {
             return response})
         .then(response => response.json())
         .then( response => console.log(response))
+        await fetch("http://localhost:3000/apartments/sendMail/giladij@outlook.com/" + props.id, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(message)
+            
+        })
+        .then(response => console.log(response))
 
     }
 
@@ -58,11 +71,11 @@ export default function InfoMenu(props) {
   return (
     <div>
         <form className='apartmentForm' style = {{visibility: props.visibility}}>
-            <label htmlFor={props.id}>{props.id}</label>
+            <label htmlFor={props.id}>Appartment unit #{props.id}</label>
             <input hidden name="number" id="number" defaultValue={props.id}></input>
             <br></br>
             <br></br>
-            <label htmlFor="purchaser">Purchaser: {props.color}</label>
+            <label htmlFor="purchaser">Purchaser:</label>
             <input id="purchaser" name="purchaser" type="text"></input>
             <br></br>
             <br></br>

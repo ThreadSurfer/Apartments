@@ -1,19 +1,23 @@
 
-function sendEmail(to, subject, text) {
+function sendEmail(to, id, text) {
+  require('dotenv').config()
    
 const nodemailer = require('nodemailer');
+const username = process.env.USERNAME
+
+console.log(username)
 
 let transporter = nodemailer.createTransport({
 
-             host: 'smtp-relay.sendinblue.com',
+             host: 'smtp.gmail.com',
 
-             port: 587,
+             port: 465,
 
              auth: {
 
-                 user: "wulu1919@gmail.com",
+                 user: process.env.USERNAME,
 
-                 pass: "kBDImfN4FPHRzJ8S"
+                 pass: process.env.PASSWORD
 
              }
 
@@ -21,11 +25,11 @@ let transporter = nodemailer.createTransport({
 
     let message = {
         
-                 from: "wulu1919@gmail.com",
+                 from: process.env.USER,
         
                  to: to,
         
-                 subject: subject,
+                 subject: "Apartment " + id + " has been purchased",
         
                  text: text
         

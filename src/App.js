@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { Component, useState } from 'react'
 import InfoMenu from './components/InfoMenu';
+import { mockComponent } from 'react-dom/test-utils';
 
 class App extends Component {
 
@@ -14,14 +14,15 @@ class App extends Component {
       purchaser: null,
       color: ["white", "white", "white", "white", "white", "white"],
       serverResponse: null,
-      url: "http://localhost:3000/apartments/"
+      url: null,
+      date: null
     }
     this.displayMenu = this.displayMenu.bind(this)
   }
 
   async componentDidMount() {
       
-    for (let id = 1; id < 6; id++) {
+    for (let id = 1; id <=6; id++) {
       await fetch('http://localhost:3000/apartments/' + id)
       .then(async (res) => {
         if(res.ok) {
@@ -36,10 +37,10 @@ class App extends Component {
     }
   }
 
-  changeProps = (id, color, purchaser, cost, serverResponse) => {
+  changeProps = (id, color, purchaser, cost, serverResponse, date) => {
     const colorSlate = this.state.color
     colorSlate[id-1] = color
-    this.setState({color: colorSlate, purchaser: purchaser, cost: cost, serverResponse: serverResponse})
+    this.setState({color: colorSlate, purchaser: purchaser, cost: cost, serverResponse: serverResponse, date: date})
   }
 
 
@@ -52,14 +53,14 @@ class App extends Component {
   if(apartmentFetch.ok) {
     await apartmentFetch.json()
     .then(res => {
-      this.setState({cost: res.cost, purchaser: res.purchaser, info_menu_visible: "visible", serverResponse: "ok"})
+      this.setState({cost: res.cost, purchaser: res.purchaser, date: res.purchaseDate.substr(0, 10), info_menu_visible: "visible", serverResponse: "ok"})
       this.state.color[id -1] = "yellow"
     })
 
   }
 
   else {
-    this.setState({ cost: null, purchaser: null, serverResponse: null})
+    this.setState({ cost: null, purchaser: null, serverResponse: null, date: null})
   }
   
   if(this.state.info_menu_visible == 'hidden'){
