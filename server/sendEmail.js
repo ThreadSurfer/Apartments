@@ -3,7 +3,8 @@ function sendEmail(to, id, text) {
   require('dotenv').config()
    
 const nodemailer = require('nodemailer');
-const username = process.env.USERNAME
+const username = process.env.CREDENTIALNAME
+const password = process.env.PASSWORD
 
 console.log(username)
 
@@ -15,9 +16,9 @@ let transporter = nodemailer.createTransport({
 
              auth: {
 
-                 user: process.env.USERNAME,
+                 user: username,
 
-                 pass: process.env.PASSWORD
+                 pass: password
 
              }
 
@@ -25,7 +26,7 @@ let transporter = nodemailer.createTransport({
 
     let message = {
         
-                 from: process.env.USER,
+                 from: username,
         
                  to: to,
         

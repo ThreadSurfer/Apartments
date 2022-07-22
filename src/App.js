@@ -1,7 +1,6 @@
 import './App.css';
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import InfoMenu from './components/InfoMenu';
-import { mockComponent } from 'react-dom/test-utils';
 
 class App extends Component {
 
@@ -63,7 +62,7 @@ class App extends Component {
     this.setState({ cost: null, purchaser: null, serverResponse: null, date: null})
   }
   
-  if(this.state.info_menu_visible == 'hidden'){
+  if(this.state.info_menu_visible === 'hidden'){
     this.setState({info_menu_visible: 'visible', selectedApartment: id})
 
   }
@@ -98,7 +97,7 @@ class App extends Component {
        purchaser = {this.state.purchaser} cost ={this.state.cost} changeProps = {this.changeProps} serverResponse = {this.state.serverResponse}
        />
 
-       <div id='test'>  
+       <div id='info'>  
        <p>Purchaser: {this.state.purchaser}</p>
        <p>Cost: {this.state.cost}</p>
        <p>Date: {this.state.date}</p>

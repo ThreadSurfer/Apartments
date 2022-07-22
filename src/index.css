@@ -88,8 +88,9 @@ from { opacity: 0; }
 to   { opacity: 1; }
 }
 
-#test {
+#info {
   margin-top: 20em;
+  margin-left: 2em;
   display: inline-block;
   float: left;
   clear: left;
